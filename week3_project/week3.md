@@ -1,26 +1,17 @@
-# Week 3 — Competency claim
+# Week 3
 
-## C3 — Data Cleaning and File Handling
+本周作业用到的脚本和示例 CSV 放在这个目录里。主要脚本是 `week3_analysis_buggy.py`，数据文件是 `week3_survey_messy.csv`；另外还有清理 `responses.csv` 的 `clean_responses.py` 和统计角色的 `count_roles.py`。
 
-**What it means:** Loading messy real-world data with Python, finding what is broken, and fixing it so the script runs cleanly on any valid input. Reading error messages as diagnostic information. Writing scripts that produce consistent, repeatable output.
+运行示例：
 
-### What counts as evidence
+```bash
+python3 week3_analysis_buggy.py
+```
 
-- A Python script that reads from a CSV file (not hardcoded data)
-- Handling of at least one real data problem: non-numeric values, inconsistent formatting, missing entries
-- A traceback you read and diagnosed — explain what the error was pointing to
-- Commit history that shows you found a bug, understood it, and fixed it
+---
 
-### Strong claim
+## Competency claim（能力说明）
 
-The script crashed with `ValueError: invalid literal for int() with base 10: 'fifteen'` because one row had the word `'fifteen'` in the experience column instead of a number. I added a `try`/`except` block to catch that and skip bad rows. The output now reports how many rows were skipped and why.
+**C3 — Data cleaning and file handling**
 
-*(Weak claim for contrast: “I cleaned the data and fixed the bugs.” — too vague; the strong claim ties the traceback, the root cause, the code change, and the user-visible reporting together.)*
-
-### Traceback diagnosis (what the error pointed to)
-
-Python raised `ValueError` at `int(row["experience_years"])`. That line assumes every value can become an integer. The message `invalid literal for int() with base 10: 'fifteen'` names the exact string that failed: the letter **word** `fifteen`, not the digits `15`. So the fix is not “try harder,” but validate or catch non-numeric text and exclude (or map) those rows before averaging.
-
-### Incomplete rows
-
-Some responses may omit `participant_name` and `role` entirely (e.g. response **R005** in `week3_survey_messy.csv`). Those rows are dropped before role counts and averages so anonymous fragments do not pollute participant-based statistics.
+我用 Python 从 CSV 读入真实数据（不是写在代码里的假数据）。数据里有缺字段的行、非数字的年限等情况：我根据报错信息定位到 `experience_years` 里出现了英文单词而不是整数，用 `try/except` 跳过无法转换的行，并在输出里说明跳过了哪几条。对既没有名字也没有角色的匿名行做了过滤，再统计角色和满意度。这样脚本在脏数据上也能稳定跑完，并给出可重复的输出。
