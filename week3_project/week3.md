@@ -1,6 +1,6 @@
 # Week 3
 
-This folder holds the scripts and sample CSVs for the assignment. The main script is `week3_analysis_buggy.py` and the messy survey data is `week3_survey_messy.csv`. There is also `clean_responses.py` for cleaning `responses.csv` and `count_roles.py` for counting roles.
+This folder holds the scripts and sample CSVs for the assignment. The main script is `week3_analysis_buggy.py` and the messy survey data is `week3_survey_messy.csv`. Running it writes a cleaned copy to `week3_survey_cleaned.csv`. There is also `clean_responses.py` for cleaning `responses.csv` and `count_roles.py` for counting roles.
 
 Example:
 
