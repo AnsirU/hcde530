@@ -1,8 +1,8 @@
 # Week 3
 
-本周作业用到的脚本和示例 CSV 放在这个目录里。主要脚本是 `week3_analysis_buggy.py`，数据文件是 `week3_survey_messy.csv`；另外还有清理 `responses.csv` 的 `clean_responses.py` 和统计角色的 `count_roles.py`。
+This folder holds the scripts and sample CSVs for the assignment. The main script is `week3_analysis_buggy.py` and the messy survey data is `week3_survey_messy.csv`. There is also `clean_responses.py` for cleaning `responses.csv` and `count_roles.py` for counting roles.
 
-运行示例：
+Example:
 
 ```bash
 python3 week3_analysis_buggy.py
@@ -10,8 +10,8 @@ python3 week3_analysis_buggy.py
 
 ---
 
-## Competency claim（能力说明）
+## Competency claim
 
 **C3 — Data cleaning and file handling**
 
-我用 Python 从 CSV 读入真实数据（不是写在代码里的假数据）。数据里有缺字段的行、非数字的年限等情况：我根据报错信息定位到 `experience_years` 里出现了英文单词而不是整数，用 `try/except` 跳过无法转换的行，并在输出里说明跳过了哪几条。对既没有名字也没有角色的匿名行做了过滤，再统计角色和满意度。这样脚本在脏数据上也能稳定跑完，并给出可重复的输出。
+I load real data from CSV with Python (not hardcoded values). The file has missing fields and bad values—for example, `experience_years` sometimes contains a word instead of an integer. I used the traceback to find the bad value, added `try`/`except` around parsing, skipped rows that cannot convert to integers, and printed which rows were skipped. Rows with no participant name and no role are dropped before stats. The script runs to completion on messy input and produces repeatable output.
