@@ -41,13 +41,32 @@ print("Responses by role:")
 for role, count in sorted(role_counts.items()):
     print(f"  {role}: {count}")
 
-# Calculate the average years of experience
+# Calculate the average years of experience (only rows where experience_years parses as an integer)
 total_experience = 0
-for row in rows:
-    total_experience += int(row["experience_years"])
+experience_count = 0
+skipped_experience = []  # (response_id, raw value) for non-numeric entries
 
-avg_experience = total_experience / len(rows)
-print(f"\nAverage years of experience: {avg_experience:.1f}")
+for row in rows:
+    raw = (row.get("experience_years") or "").strip()
+    try:
+        total_experience += int(raw)
+        experience_count += 1
+    except ValueError:
+        skipped_experience.append((row.get("response_id", "?"), raw))
+
+if skipped_experience:
+    print(
+        f"\nSkipped {len(skipped_experience)} row(s) with non-numeric experience_years "
+        "(cannot convert to int — e.g. words instead of digits)."
+    )
+    for rid, raw in skipped_experience:
+        print(f"  {rid}: {raw!r}")
+
+if experience_count:
+    avg_experience = total_experience / experience_count
+    print(f"\nAverage years of experience: {avg_experience:.1f} (from {experience_count} valid rows)")
+else:
+    print("\nAverage years of experience: n/a (no numeric experience values)")
 
 # Find the top 5 highest satisfaction scores
 scored_rows = []
