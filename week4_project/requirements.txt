@@ -1,0 +1,2 @@
+# Optional: only required if you use python-dotenv for a keyed API in open_library_search.py
+python-dotenv>=1.0.0

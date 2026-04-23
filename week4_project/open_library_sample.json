@@ -1,0 +1,53 @@
+{
+  "query": "human computer interaction",
+  "results": [
+    {
+      "title": "Human-computer interaction",
+      "first_author": "Alan Dix",
+      "first_publish_year": 1993,
+      "edition_count": 5
+    },
+    {
+      "title": "Human-computer interaction",
+      "first_author": "Open University. Human-Computer Interaction Course Team.",
+      "first_publish_year": 1990,
+      "edition_count": 12
+    },
+    {
+      "title": "Human-computer interaction",
+      "first_author": "Andrew Sears",
+      "first_publish_year": 2008,
+      "edition_count": 1
+    },
+    {
+      "title": "Human-computer interaction",
+      "first_author": "Andrew Sears",
+      "first_publish_year": 2003,
+      "edition_count": 16
+    },
+    {
+      "title": "Human-computer interaction",
+      "first_author": "Alan Dix",
+      "first_publish_year": 1993,
+      "edition_count": 1
+    },
+    {
+      "title": "Human computer interaction",
+      "first_author": "D. Pilgrim",
+      "first_publish_year": 1998,
+      "edition_count": 1
+    },
+    {
+      "title": "Handbook of Human-Computer Interaction",
+      "first_author": "Martin Helander",
+      "first_publish_year": 1988,
+      "edition_count": 3
+    },
+    {
+      "title": "Human-computer interaction",
+      "first_author": "Andrew Sears",
+      "first_publish_year": 2009,
+      "edition_count": 1
+    }
+  ]
+}
