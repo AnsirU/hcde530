@@ -127,6 +127,7 @@ def main() -> None:
         if ss:
             scored_rows.append((row["participant_name"], int(ss)))
 
+    # Descending: highest scores first (ascending sort would make [:5] the five *lowest*).
     scored_rows.sort(key=lambda x: x[1], reverse=True)
     top5 = scored_rows[:5]
 
