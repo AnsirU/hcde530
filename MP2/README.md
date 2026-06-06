@@ -51,7 +51,7 @@ Supporting code: `mobility_insights.py`
 [City of Seattle Open Data — Shared Mobility Program / Fremont Bridge counter](https://data.seattle.gov/Transportation/Shared-Mobility-Program-Data/65db-xm6k)  
 Columns: timestamp, total crossings, west sidewalk, east sidewalk (hourly).
 
-**Scope note:** Vendor trip-level logs (start/end/provider/geo per trip) are **not** published as open CSV on this portal. This tool analyzes the **public counter feed** at your MP2a program URL and frames findings as **corridor demand intensity** — see root `reflection.md` for the MP2a pivot.
+**Scope note:** Vendor trip-level logs (start/end/provider/geo per trip) are **not** published as open CSV on this portal. This tool analyzes the **public counter feed** at your MP2a program URL and frames findings as **corridor demand intensity** — see [`reflection.md`](reflection.md) for the MP2a pivot.
 
 ## Outputs committed in this folder
 
@@ -62,5 +62,5 @@ Columns: timestamp, total crossings, west sidewalk, east sidewalk (hourly).
 | `data/fremont_micromobility_hourly.csv` | Source data |
 | `figures/*.png` | Static chart exports |
 | `outputs/mobility_insight_report.md` | Generated after notebook run |
-
-Competency claims: [`../mp2.md`](../mp2.md) · Reflection: [`../reflection.md`](../reflection.md)
+| `mp2.md` | Competency claims |
+| `reflection.md` | 500-word process reflection |
