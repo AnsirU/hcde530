@@ -1,15 +1,31 @@
+/* Lime-inspired design tokens (micromobility product context) */
 :root {
-  --bg: #f6f4ef;
-  --surface: #ffffff;
-  --ink: #1a1f2e;
-  --muted: #5c6478;
-  --accent: #0d6e6e;
-  --accent-soft: #d4efef;
-  --warm: #e85d4c;
-  --warm-soft: #fde8e5;
-  --border: rgba(26, 31, 46, 0.08);
+  --lime-brand: #00dd00;
+  --lime-brand-dark: #00b800;
+  --lime-brand-soft: #e8ffe8;
+  --lime-black: #111111;
+  --lime-gray-900: #1a1a1a;
+  --lime-gray-600: #5c5c5c;
+  --lime-gray-400: #9e9e9e;
+  --lime-gray-100: #f4f4f4;
+  --lime-white: #ffffff;
+  --lime-coral: #ff5a3c;
+  --lime-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --lime-radius: 16px;
+  --lime-radius-pill: 999px;
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --shadow: 0 12px 40px rgba(26, 31, 46, 0.06);
+
+  /* semantic aliases */
+  --bg: var(--lime-gray-100);
+  --surface: var(--lime-white);
+  --ink: var(--lime-black);
+  --muted: var(--lime-gray-600);
+  --accent: var(--lime-brand);
+  --accent-dark: var(--lime-brand-dark);
+  --accent-soft: var(--lime-brand-soft);
+  --warm: var(--lime-coral);
+  --warm-soft: #fff0ed;
+  --border: rgba(17, 17, 17, 0.08);
 }
 
 * {
@@ -24,7 +40,7 @@ body,
 
 body {
   margin: 0;
-  font-family: "DM Sans", system-ui, sans-serif;
+  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
@@ -33,8 +49,9 @@ body {
 h1,
 h2,
 .stat-value {
-  font-family: "Instrument Serif", Georgia, serif;
-  font-weight: 400;
+  font-family: "DM Sans", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 button {

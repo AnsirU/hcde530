@@ -1,7 +1,43 @@
 .page {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 4rem;
+  padding: 0 1.25rem 4rem;
+}
+
+/* Lime-style top bar */
+.lime-bar {
+  background: var(--lime-black);
+  color: var(--lime-white);
+  margin: 0 -1.25rem 2rem;
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.lime-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
+.lime-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--lime-brand);
+  box-shadow: 0 0 12px rgba(0, 221, 0, 0.6);
+}
+
+.lime-bar-tag {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--lime-gray-400);
 }
 
 .hero {
@@ -9,19 +45,19 @@
 }
 
 .eyebrow {
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
+  color: var(--lime-brand-dark);
+  font-weight: 700;
   margin: 0 0 0.5rem;
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.2rem);
   line-height: 1.05;
   margin: 0 0 0.75rem;
-  letter-spacing: -0.02em;
+  color: var(--lime-black);
 }
 
 .lede {
@@ -47,37 +83,40 @@
 }
 
 .live-badge {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.3rem 0.6rem;
-  border-radius: 999px;
-  background: var(--warm-soft);
-  color: var(--warm);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--lime-radius-pill);
+  background: var(--lime-gray-100);
+  color: var(--muted);
+  border: 1px solid var(--border);
 }
 
 .live-badge.on {
-  background: var(--accent-soft);
-  color: var(--accent);
+  background: var(--lime-brand);
+  color: var(--lime-black);
+  border-color: var(--lime-brand);
 }
 
 .refresh-btn {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--ink);
-  padding: 0.4rem 0.85rem;
-  border-radius: 999px;
+  border: none;
+  background: var(--lime-black);
+  color: var(--lime-white);
+  padding: 0.45rem 1rem;
+  border-radius: var(--lime-radius-pill);
   font-size: 0.82rem;
-  transition: background 180ms cubic-bezier(0.23, 1, 0.32, 1);
+  font-weight: 600;
+  transition: background 180ms var(--ease-out);
 }
 
 .refresh-btn:hover:not(:disabled) {
-  background: var(--accent-soft);
+  background: var(--lime-gray-900);
 }
 
 .refresh-btn:disabled {
-  opacity: 0.6;
+  opacity: 0.55;
   cursor: wait;
 }
 
@@ -98,31 +137,32 @@
 
 .stat-card {
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
+  border: 2px solid var(--lime-black);
+  border-radius: var(--lime-radius);
   padding: 1.1rem 1.2rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--lime-shadow);
 }
 
 .stat-label {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   color: var(--muted);
   margin: 0 0 0.35rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  font-weight: 600;
 }
 
 .stat-value {
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   margin: 0;
   line-height: 1.1;
-  color: var(--ink);
+  color: var(--lime-black);
 }
 
 .stat-suffix {
   font-size: 1.1rem;
   margin-left: 0.15rem;
-  color: var(--accent);
+  color: var(--lime-brand-dark);
 }
 
 .stat-detail {
@@ -134,15 +174,16 @@
 .panel {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--lime-radius);
   padding: 1.25rem 1.35rem 1.5rem;
   margin-bottom: 1.25rem;
-  box-shadow: var(--shadow);
+  box-shadow: var(--lime-shadow);
 }
 
 .panel-head h2 {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   margin: 0 0 0.25rem;
+  color: var(--lime-black);
 }
 
 .panel-head p {
@@ -168,22 +209,23 @@
 }
 
 .day-tab {
-  border: 1px solid var(--border);
-  background: var(--bg);
+  border: 2px solid var(--border);
+  background: var(--lime-white);
   color: var(--muted);
-  padding: 0.35rem 0.65rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--lime-radius-pill);
+  font-size: 0.78rem;
+  font-weight: 600;
   transition:
-    background 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    color 180ms cubic-bezier(0.23, 1, 0.32, 1),
-    border-color 180ms cubic-bezier(0.23, 1, 0.32, 1);
+    background 180ms var(--ease-out),
+    color 180ms var(--ease-out),
+    border-color 180ms var(--ease-out);
 }
 
 .day-tab.active {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
+  background: var(--lime-brand);
+  color: var(--lime-black);
+  border-color: var(--lime-black);
 }
 
 .two-col {
@@ -198,11 +240,14 @@
   }
 }
 
+.insight {
+  border-left: 4px solid var(--lime-brand);
+}
+
 .insight ul {
   margin: 0;
   padding-left: 1.1rem;
   line-height: 1.6;
-  color: var(--ink);
 }
 
 .insight li {
@@ -215,7 +260,11 @@
 }
 
 .footer-links a {
-  color: var(--accent);
+  color: var(--lime-black);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--lime-brand);
+  text-underline-offset: 3px;
 }
 
 .loading {
@@ -226,8 +275,9 @@
 
 .loader {
   color: var(--muted);
+  font-weight: 600;
 }
 
 .error {
-  color: var(--warm);
+  color: var(--lime-coral);
 }

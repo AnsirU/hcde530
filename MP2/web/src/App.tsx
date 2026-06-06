@@ -127,8 +127,19 @@ export default function App() {
 
   const { summary, meta } = data;
 
+  const chartLime = "#00DD00";
+  const chartBlack = "#111111";
+  const chartCoral = "#FF5A3C";
+
   return (
     <div className="page">
+      <div className="lime-bar">
+        <div className="lime-logo">
+          <span className="lime-dot" aria-hidden />
+          Mobility Insight Kit
+        </div>
+        <span className="lime-bar-tag">Seattle micromobility research</span>
+      </div>
       <header className="hero">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
           <p className="eyebrow">HCDE 530 · Mini Project 2</p>
@@ -219,7 +230,9 @@ export default function App() {
               />
               <Bar
                 dataKey="avg"
-                fill="var(--accent)"
+                fill={chartLime}
+                stroke={chartBlack}
+                strokeWidth={0}
                 radius={[4, 4, 0, 0]}
                 animationDuration={900}
                 animationEasing="ease-out"
@@ -253,8 +266,8 @@ export default function App() {
             <AreaChart data={heatSeries} margin={{ top: 8, right: 8, left: 0, bottom: 0 }}>
               <defs>
                 <linearGradient id="heatFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="var(--warm)" stopOpacity={0.35} />
-                  <stop offset="100%" stopColor="var(--warm)" stopOpacity={0} />
+                  <stop offset="0%" stopColor={chartLime} stopOpacity={0.45} />
+                  <stop offset="100%" stopColor={chartLime} stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(26,31,46,0.06)" />
@@ -264,7 +277,7 @@ export default function App() {
               <Area
                 type="monotone"
                 dataKey="avg"
-                stroke="var(--warm)"
+                stroke={chartBlack}
                 fill="url(#heatFill)"
                 strokeWidth={2}
                 animationDuration={700}
@@ -292,8 +305,9 @@ export default function App() {
                 <Area
                   type="monotone"
                   dataKey="avg"
-                  stroke="var(--accent)"
-                  fill="var(--accent-soft)"
+                  stroke={chartBlack}
+                  fill={chartLime}
+                  fillOpacity={0.25}
                   animationDuration={800}
                 />
               </AreaChart>
@@ -313,8 +327,8 @@ export default function App() {
                 <YAxis tick={{ fontSize: 10 }} width={32} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="west" stackId="a" fill="var(--accent)" animationDuration={700} />
-                <Bar dataKey="east" stackId="a" fill="var(--warm)" animationDuration={700} />
+                <Bar dataKey="west" stackId="a" fill={chartLime} animationDuration={700} />
+                <Bar dataKey="east" stackId="a" fill={chartBlack} animationDuration={700} />
               </BarChart>
             </ResponsiveContainer>
           </div>

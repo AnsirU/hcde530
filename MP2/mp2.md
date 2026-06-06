@@ -2,24 +2,24 @@
 
 **Author:** Zhian Hu  
 **Repository:** [`AnsirU/hcde530`](https://github.com/AnsirU/hcde530)  
-**Live tool:** https://hcde530.vercel.app  
+**Live tool (primary URL for Canvas):** https://hcde530.vercel.app  
 **Notebook:** [`mp2_notebook.ipynb`](https://github.com/AnsirU/hcde530/blob/main/MP2/mp2_notebook.ipynb)  
-**Supporting module:** `mobility_insights.py` · **Web source:** `MP2/web/`
+**Supporting module:** `mobility_insights.py` · **Web app:** `MP2/web/` · **Live API:** `api/analytics.js`
 
 ---
 
 ## C5 — Data analysis with pandas
 
-I built **`load_and_clean()`** and five analysis functions in `mobility_insights.py` that transform raw Seattle counter CSVs into typed datetime/numeric fields (`hour`, `weekday`, `is_weekend`, `west_share`) and answer research questions via **`groupby`**, **`quantile`**, and **`agg`** — e.g., `peak_hours()`, `weekday_weekend_compare()`, and `low_activity_windows()`. The notebook’s Data Profile cells (`head`, `info`, shape checks) document data quality before charts run. Evidence: `mp2_notebook.ipynb` §1–2 and `mobility_insights.py` lines 24–95.
+I built **`load_and_clean()`** and five analysis functions in `mobility_insights.py` that transform raw Seattle counter CSVs into typed datetime/numeric fields (`hour`, `weekday`, `is_weekend`, `west_share`) and answer research questions via **`groupby`**, **`quantile`**, and **`agg`** — e.g., `peak_hours()`, `weekday_weekend_compare()`, and `low_activity_windows()`. The same aggregation logic is mirrored in `api/analytics.js` for live portal sync. Evidence: `mp2_notebook.ipynb` §1–2, `mobility_insights.py` lines 26–101, and report output in `outputs/mobility_insight_report.md` (peak hours 17:00/08:00/16:00; weekday 122.5 vs weekend 69.7 avg crossings).
 
 ## C6 — Data visualization
 
-Four Plotly views in the notebook map question → geometry: **heatmap** (hour × weekday intensity), **line** (monthly trend), **bar** (peak-hour profile), **stacked area** (directional west/east demand). Each has a **title and axis labels** and is exported with **Kaleido** to `figures/*.png` for offline grading. I chose heatmaps for two-dimensional temporal patterns and lines for ordered monthly series rather than repeating one chart type.
+Four Plotly views in the notebook map question → geometry: **heatmap** (hour × weekday), **line** (monthly trend), **bar** (peak-hour profile), **stacked area** (directional demand) — each exported to `figures/*.png` with Kaleido. The deployed dashboard (`MP2/web/`) adds Recharts bar/area charts with **animated count-up metrics** and weekday tabs. Chart types match data structure (2D temporal heatmap vs ordered monthly line) rather than repeating one geometry.
 
 ## C7 — Tooling / reproducible research workflow
 
-Mobility Insight Kit is a **standalone `MP2/` package** plus a **deployed web dashboard** at https://hcde530.vercel.app: bundled CSV, Python module (`mobility_insights.py`), executed notebook, generated `outputs/mobility_insight_report.md`, and a Vite/React front-end (`MP2/web/`) that precomputes analytics JSON and renders animated charts for researchers without a local Python environment. `build_insight_report()` turns aggregates into **plain-language findings** for non-coders.
+Mobility Insight Kit ships as a **standalone `MP2/` package** plus **public deployment**: bundled `data/fremont_micromobility_hourly.csv`, executed notebook, `mobility_insights.py`, generated reports, and https://hcde530.vercel.app. The `/api/analytics` endpoint fetches the latest Seattle Open Data snapshot on page load or refresh (15-minute cache). README documents notebook, web, and CLI entry points for graders who were not in the course.
 
 ## C8 — HCD sensemaking (research translation)
 
-`build_insight_report()` explicitly connects metrics to **research actions** (when to run intercepts, where directional imbalance suggests parking/signage friction, which quiet hours suit maintenance studies) and states limits: counter data ≠ trip microdata. Section 4 of the notebook prints the report for workshop readouts — bridging computation and service-design decisions without claiming surveys are obsolete.
+`build_insight_report()` and the dashboard **Research readout** connect metrics to **research actions** — when to run intercepts, which quiet hours suit maintenance studies, how west/east skew informs parking placement — while explicitly limiting claims: hourly counter data ≠ trip-level vendor logs. Section 4 of `mp2_notebook.ipynb` and the live UI translate numbers into workshop-ready language without replacing qualitative methods.
