@@ -13,6 +13,7 @@ import {
   YAxis,
 } from "recharts";
 import { useCountUp } from "./hooks/useCountUp";
+import { loadAnalytics } from "./lib/loadAnalytics";
 import type { Analytics } from "./types";
 import "./App.css";
 
@@ -31,14 +32,17 @@ function StatCard({
   suffix = "",
   detail,
   index,
+  animKey,
 }: {
   label: string;
   value: number;
   suffix?: string;
   detail?: string;
   index: number;
+  animKey: number;
 }) {
   const animated = useCountUp(value, 1000, true);
+  void animKey;
   const display =
     suffix === "%"
       ? animated.toFixed(1)
@@ -68,15 +72,27 @@ export default function App() {
   const [data, setData] = useState<Analytics | null>(null);
   const [heatDay, setHeatDay] = useState("Monday");
   const [error, setError] = useState("");
+  const [source, setSource] = useState<"live" | "static" | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+  const [animKey, setAnimKey] = useState(0);
+
+  const refresh = async () => {
+    setRefreshing(true);
+    setError("");
+    try {
+      const result = await loadAnalytics();
+      setData(result.data);
+      setSource(result.source);
+      setAnimKey((k) => k + 1);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Refresh failed");
+    } finally {
+      setRefreshing(false);
+    }
+  };
 
   useEffect(() => {
-    fetch("/data/analytics.json")
-      .then((r) => {
-        if (!r.ok) throw new Error("Failed to load analytics");
-        return r.json();
-      })
-      .then(setData)
-      .catch((e) => setError(e.message));
+    void refresh();
   }, []);
 
   const heatSeries = useMemo(() => {
@@ -95,7 +111,7 @@ export default function App() {
     );
   }
 
-  if (!data) {
+  if (!data && refreshing) {
     return (
       <main className="shell loading">
         <motion.div
@@ -103,7 +119,7 @@ export default function App() {
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
         >
-          Loading corridor data…
+          {refreshing ? "Syncing from Seattle Open Data…" : "Loading corridor data…"}
         </motion.div>
       </main>
     );
@@ -124,35 +140,65 @@ export default function App() {
           <p className="meta-line">
             {meta.records.toLocaleString()} hourly records · {meta.start} → {meta.end}
           </p>
+          <div className="hero-actions">
+            <span className={`live-badge ${source === "live" ? "on" : ""}`}>
+              {source === "live" ? "Live from Seattle API" : "Offline snapshot"}
+            </span>
+            <button
+              type="button"
+              className="refresh-btn"
+              onClick={() => void refresh()}
+              disabled={refreshing}
+            >
+              {refreshing ? "Refreshing…" : "Refresh data"}
+            </button>
+          </div>
+          {meta.portalLastModified && (
+            <p className="sync-line">
+              Portal last updated: {new Date(meta.portalLastModified).toLocaleString()}
+              {meta.fetchedAt && (
+                <> · Fetched: {new Date(meta.fetchedAt).toLocaleString()}</>
+              )}
+            </p>
+          )}
+          {meta.note && <p className="sync-note">{meta.note}</p>}
         </motion.div>
       </header>
 
       <section className="stats-grid">
         <StatCard
+          key={`wd-${animKey}`}
           label="Weekday avg crossings / hour"
           value={summary.weekday_avg}
           detail="Commute-heavy pattern"
           index={0}
+          animKey={animKey}
         />
         <StatCard
+          key={`we-${animKey}`}
           label="Weekend avg crossings / hour"
           value={summary.weekend_avg}
           detail="Lower leisure baseline"
           index={1}
+          animKey={animKey}
         />
         <StatCard
+          key={`ws-${animKey}`}
           label="West sidewalk share"
           value={summary.west_share_pct}
           suffix="%"
           detail={`West-dominant ${summary.west_dominant_pct}% of hours`}
           index={2}
+          animKey={animKey}
         />
         <StatCard
+          key={`rc-${animKey}`}
           label="Records analyzed"
           value={meta.records}
           suffix="k"
           detail={`Peaks: ${summary.peak_hours.join(", ")}`}
           index={3}
+          animKey={animKey}
         />
       </section>
 

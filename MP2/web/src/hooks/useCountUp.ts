@@ -5,6 +5,7 @@ export function useCountUp(target: number, duration = 900, active = true) {
 
   useEffect(() => {
     if (!active) return;
+    setValue(0);
     let frame = 0;
     const start = performance.now();
 

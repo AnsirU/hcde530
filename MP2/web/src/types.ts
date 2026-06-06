@@ -1,5 +1,14 @@
 export type Analytics = {
-  meta: { records: number; start: string; end: string };
+  meta: {
+    records: number;
+    start: string;
+    end: string;
+    live?: boolean;
+    source?: string;
+    portalLastModified?: string | null;
+    fetchedAt?: string;
+    note?: string;
+  };
   summary: {
     weekday_avg: number;
     weekend_avg: number;

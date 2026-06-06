@@ -26,6 +26,8 @@ https://hcde530.vercel.app
 
 Interactive demand-pattern charts, animated summary metrics, and research readout — no Python install required.
 
+**Data sync:** On each visit (or **Refresh data**), the dashboard pulls the latest rows from the [Seattle Open Data API](https://data.seattle.gov/resource/65db-xm6k.json) via `/api/analytics`. The city portal updates periodically (~monthly); this is **not** per-second live sensor streaming.
+
 **Published notebook (GitHub renders natively):**  
 https://github.com/AnsirU/hcde530/blob/main/MP2/mp2_notebook.ipynb
 
