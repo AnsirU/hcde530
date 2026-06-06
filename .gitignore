@@ -1,7 +1,12 @@
 .DS_Store
+node_modules/
+MP2/web/node_modules/
+MP2/web/dist/
+.agents/
 # Nested repo published separately (see GitHub: hcde530-week2)
 week2_project/
 
 # Never commit API secrets (Week 4 pattern)
 .env
 week4_project/.env
+.vercel

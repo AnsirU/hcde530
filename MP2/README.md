@@ -19,7 +19,12 @@ Use it when you need **quantitative demand patterns** before or alongside interv
 | Service designers | Spot asymmetric flow and quiet maintenance windows |
 | Mobility PM / ops | Seasonal intensity baselines for fleet or parking policy |
 
-## Public URL (live artifact — no server)
+## Public URLs (live artifacts)
+
+**Live web dashboard (Vercel):**  
+https://hcde530.vercel.app
+
+Interactive demand-pattern charts, animated summary metrics, and research readout — no Python install required.
 
 **Published notebook (GitHub renders natively):**  
 https://github.com/AnsirU/hcde530/blob/main/MP2/mp2_notebook.ipynb
@@ -37,7 +42,19 @@ https://github.com/AnsirU/hcde530/blob/main/MP2/mp2_notebook.ipynb
 
 Bundled data: `data/fremont_micromobility_hourly.csv` (~120k hourly rows, ~3.7 MB).
 
-### Option B — Script / module
+### Option B — Web dashboard (deployed)
+
+Open **https://hcde530.vercel.app** in any browser. Source lives in `MP2/web/` (Vite + React + Recharts). Rebuild data with `python scripts/build_data.py` from `MP2/web/` after updating the CSV.
+
+Local dev:
+
+```bash
+cd MP2/web
+npm install
+npm run dev
+```
+
+### Option C — Script / module
 
 ```bash
 cd MP2
@@ -64,3 +81,4 @@ Columns: timestamp, total crossings, west sidewalk, east sidewalk (hourly).
 | `outputs/mobility_insight_report.md` | Generated after notebook run |
 | `mp2.md` | Competency claims |
 | `reflection.md` | 500-word process reflection |
+| `web/` | Deployed React dashboard (`https://hcde530.vercel.app`) |

@@ -1,0 +1,48 @@
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --ink: #1a1f2e;
+  --muted: #5c6478;
+  --accent: #0d6e6e;
+  --accent-soft: #d4efef;
+  --warm: #e85d4c;
+  --warm-soft: #fde8e5;
+  --border: rgba(26, 31, 46, 0.08);
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --shadow: 0 12px 40px rgba(26, 31, 46, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: "DM Sans", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+.stat-value {
+  font-family: "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+button:active {
+  transform: scale(0.97);
+  transition: transform 120ms var(--ease-out);
+}

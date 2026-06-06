@@ -2,8 +2,9 @@
 
 **Author:** Zhian Hu  
 **Repository:** [`AnsirU/hcde530`](https://github.com/AnsirU/hcde530)  
-**Tool (published notebook):** [`mp2_notebook.ipynb`](https://github.com/AnsirU/hcde530/blob/main/MP2/mp2_notebook.ipynb)  
-**Supporting module:** `mobility_insights.py`
+**Live tool:** https://hcde530.vercel.app  
+**Notebook:** [`mp2_notebook.ipynb`](https://github.com/AnsirU/hcde530/blob/main/MP2/mp2_notebook.ipynb)  
+**Supporting module:** `mobility_insights.py` · **Web source:** `MP2/web/`
 
 ---
 
@@ -17,7 +18,7 @@ Four Plotly views in the notebook map question → geometry: **heatmap** (hour �
 
 ## C7 — Tooling / reproducible research workflow
 
-Mobility Insight Kit is a **standalone `MP2/` package**: bundled CSV, Python module, executed notebook, generated `outputs/mobility_insight_report.md`, and README with **public GitHub notebook URL** (no deployment server). `build_insight_report()` turns aggregates into **plain-language findings** for non-coders — the “tool does something real” requirement for the research track. Setup cell retains course-mandated `pip install` pattern.
+Mobility Insight Kit is a **standalone `MP2/` package** plus a **deployed web dashboard** at https://hcde530.vercel.app: bundled CSV, Python module (`mobility_insights.py`), executed notebook, generated `outputs/mobility_insight_report.md`, and a Vite/React front-end (`MP2/web/`) that precomputes analytics JSON and renders animated charts for researchers without a local Python environment. `build_insight_report()` turns aggregates into **plain-language findings** for non-coders.
 
 ## C8 — HCD sensemaking (research translation)
 
