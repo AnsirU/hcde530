@@ -73,7 +73,7 @@ export default function App() {
   const [heatDay, setHeatDay] = useState("Monday");
   const [error, setError] = useState("");
   const [source, setSource] = useState<"live" | "static" | null>(null);
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = useState(true);
   const [animKey, setAnimKey] = useState(0);
 
   const refresh = async () => {
@@ -103,17 +103,26 @@ export default function App() {
     }));
   }, [data, heatDay]);
 
-  if (error) {
+  if (error && !data) {
     return (
-      <main className="shell">
+      <main className="page loading">
         <p className="error">Could not load data: {error}</p>
+        <button type="button" className="refresh-btn" onClick={() => void refresh()}>
+          Retry
+        </button>
       </main>
     );
   }
 
-  if (!data && refreshing) {
+  if (!data) {
     return (
-      <main className="shell loading">
+      <main className="page loading">
+        <div className="lime-bar">
+          <div className="lime-logo">
+            <span className="lime-dot" aria-hidden />
+            Mobility Insight Kit
+          </div>
+        </div>
         <motion.div
           className="loader"
           animate={{ opacity: [0.4, 1, 0.4] }}
